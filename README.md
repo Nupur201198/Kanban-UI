@@ -1,8 +1,21 @@
-# React + Vite
+# Kanban-Ui
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Package requirments
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+We need the below packages for building our frontend. All packages can be installed via **npm**
+
+- React Query & Axios => For backend communication
+LINK => [React-Query](https://www.npmjs.com/package/@tanstack/react-query)
+LINK => [Axios](https://axios-http.com/docs/intro)
+
+- React redux & redux toolkit & redux-persist => For state management
+LINK => [Redux-toolkit](https://redux.js.org/introduction/getting-started)
+LINK => [Redux-persist](https://www.npmjs.com/package/redux-persist)
+
+- React router => For multipage application
+LINK => [React-router-dom](https://reactrouter.com/en/main/start/tutorial)
+
+- Flowbite & Flowbite-react & Tailwind => For Ui blocks
+LINK => [Flowbite](https://flowbite.com/docs/getting-started/introduction/)
+
