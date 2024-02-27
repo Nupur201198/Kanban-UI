@@ -2,10 +2,15 @@ import { Axios } from "axios"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import axiosClient from "../api"
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
 
 function LoginPage() {
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      };
     const { register,formState: { errors }, handleSubmit } = useForm()
     const onSubmit = (data) => {
         axiosClient.post('auth/signin',JSON.stringify(data),{
@@ -37,10 +42,22 @@ function LoginPage() {
                   </div>
                   <div>
                       <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                      <input {...register("password",{required: true})} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""></input>
+                      <input {...register("password",{required: true})} type={showPassword ? 'text' : 'password'} name="password" id="password" placeholder="••••••••" className=" bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-teal-600 focus:border-teal-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""></input>
+                      <button type="button" style={{
+            position: 'right',
+            right: '5px',
+            top: '50%',
+            transform: 'translateY(-200%)',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+          onClick={togglePasswordVisibility}
+        >{showPassword ? <FaEyeSlash /> : <FaEye />}</button>
                       {errors.password?.type === "required" && (
                         <p role="alert">Password is required</p>
                         )}
+                        
                   </div>
                   <div className="flex items-center justify-end">
                       <a href="#" className="text-sm font-medium text-teal-600 hover:underline dark:text-teal-500">Forgot password?</a>
