@@ -9,11 +9,17 @@ import { VscEye, VscEyeClosed } from "react-icons/vsc";
 function OtpForm(props) {
 
     const { register,formState: { errors }, handleSubmit } = useForm()
-    const onSubmit = (data) => {
-        console.log(data)
+      
+        const onSubmit = async (formData) => { 
+        const values = Object.values(formData);
+        const sum = values.reduce((acc, val) => acc + val);
+        const responseData = {"email" : props.userDetails.email , "otp" : sum}
+        const {data,status} = await axiosClient.post('auth/verifysignin',JSON.stringify(responseData),{
+                "headers":{"Content-Type":"application/json"}
+            })
+            console.log(data,status)
+    } 
 
-
-    }
     return (
       <>
         <div className="bg-gray-50 dark:bg-gray-900 ">
@@ -71,7 +77,7 @@ function OtpForm(props) {
                   </div>
                   </div>
                   <div className = "flex justify-end">
-                    <p>It may take a minute to receive your code. Didn't receive it yet? Resend code</p>
+                    <p>It may take a minute to receive your code. Didn't receive it yet?Resend Code</p>
                   <button type = "submit" className=" text-white bg-teal-600 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">Send</button>
               </div>
               </form>
