@@ -1,28 +1,31 @@
-import './App.css'
-import LoginPage from './pages/LoginPage'
-import SignUpPage from './pages/SignUpPage'
-
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { useEffect } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { initFlowbite } from "flowbite";
 
 const router = createBrowserRouter([
   {
-    path: "/login",
-    element: <LoginPage />,
+    path: "/signin",
+    element: <SignInPage />,
   },
   {
     path: "/signup",
     element: <SignUpPage />,
   },
+  {
+    path: "/test2",
+    element: <Navbar />,
+  },
 ]);
 
 function App() {
-
-  return (
-<RouterProvider router={router} />
-  )
+  useEffect(()=>{
+    initFlowbite()
+  })
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
