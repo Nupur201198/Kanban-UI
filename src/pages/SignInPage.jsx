@@ -6,7 +6,9 @@ import LoginForm from "../components/loginForm";
 
 function SignInPage() {
     const [pageState,setpageState] = useState(0)
-    const [user,setUser] = useState({})
+    const [user,setUser] = useState({
+      email:""
+    })
 
     const handlePageState = (data) =>{
         setpageState(data)
